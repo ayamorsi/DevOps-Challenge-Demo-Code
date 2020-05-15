@@ -17,11 +17,11 @@ pipeline {
         }
     
      stage('Deploy') {
-         script{
+         steps{
             withEnv(["PATH=$PATH:/usr/bin/docker-compose"]){
                 sh(
                     script:'docker-compose build && docker-compose -p deploy up -d ')
-                    
+
                 }
          }
             }
