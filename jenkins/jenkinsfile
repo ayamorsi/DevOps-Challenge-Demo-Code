@@ -8,7 +8,7 @@ pipeline {
             }
         post {
            success{
-               echo "======== test successfully========"
+               echo "======== test success========"
         }
            failure{
                echo "======== test failed========"
@@ -18,11 +18,7 @@ pipeline {
     
      stage('Deploy') {
          steps{
-            withEnv(["PATH=$PATH:/usr/bin/docker-compose"]){
-                sh(
-                    script:'docker-compose build && docker-compose -p deploy up -d ')
-
-                }
+                sh 'docker-compose build && docker-compose -p deploy up -d '
          }
             }
         }
