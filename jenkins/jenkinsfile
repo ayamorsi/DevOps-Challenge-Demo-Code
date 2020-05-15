@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Test') {
+            steps {
+                sh 'python tests/test.py'
+            }
+        }
+    }
+     post {
+       success {
+            sh 'docker-compose up -d --build'
+        }
+     }
+
+}

@@ -1,0 +1,21 @@
+version: '3.6'  
+services:  
+  app:
+    build:
+      context: /usr/src/app
+    depends_on:
+      - redis
+    ports:
+      - "5000:5000"
+  redis:
+    image: redis:3.2-alpine
+    ports:
+        - "6379"
+    deploy:
+        replicas: 2
+        update_config:
+            parallelism: 2
+            delay: 10s
+        restart_policy:
+            condition: on-failure
+      
