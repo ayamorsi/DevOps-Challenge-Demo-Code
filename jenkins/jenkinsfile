@@ -1,5 +1,13 @@
 pipeline {
     agent any
+     environment {
+                ENV_TYPE = 'DEV'
+                HOST = 'localhost'
+                PORT = '8000'
+                REDIS_HOST = 'redis'
+                REDIS_PORT = '6379'
+                REDIS_DB = '0'
+            }
 
     stages {
         stage('Test') {
