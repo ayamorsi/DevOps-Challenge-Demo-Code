@@ -18,7 +18,7 @@ pipeline {
     
      stage('Deploy') {
          steps{
-                sh 'docker run -v /var/run/docker.sock:/var/run/docker.sock ... &&docker-compose build && docker-compose -p deploy up -d '
+                sh 'docker-compose build && docker-compose -p deploy up -d '
          }
             }
         }
