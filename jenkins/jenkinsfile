@@ -6,12 +6,21 @@ pipeline {
             steps {
                 sh 'python tests/test.py'
             }
+        post {
+           success{
+               echo "======== test successfully========"
         }
-    }
-     post {
-       success {
-            sh 'docker-compose up -d --build'
+           failure{
+               echo "======== test failed========"
         }
      }
+     stage('Deploy') {
+            steps{
+                steps {
+                sh 'docker-compose build && docker-compose -p deploy up -d '
+                }
+            }
+        }
 
+   }
 }
